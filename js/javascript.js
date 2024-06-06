@@ -15,6 +15,8 @@ console.log(buttonHW);
 buttonItems.forEach((button) => {
      button.style.height = buttonHW + "px";
      button.style.width = buttonHW + "px";
+     button.style.borderRadius = 100 + "%";
+     button.style.border = "none";
 });
 
 
@@ -22,4 +24,5 @@ const equalButton = buttonsDiv.querySelector(".zero");
 let equalButtonCSS = getComputedStyle(equalButton);
 let equalButtonWidth = parseFloat(equalButtonCSS.width);
 equalButton.style.width = (equalButtonWidth * 2) + "px";
+equalButton.style.borderRadius = 100 + "px";
 

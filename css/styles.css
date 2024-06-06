@@ -4,10 +4,11 @@
      padding: 0px;
 }
 
-/* button {
-     height: 25px;
-     width: 25px;
-} */
+i {
+     font-size: 25px;
+     color: white;
+}
+
 
 .calculator-container {
      /* border: 3px solid black; */
@@ -24,21 +25,30 @@
 
 .calculator {
      /* border: 3px solid gray; */
-     width: 700px;
+     width: 500px;
 }
 
 .output-container {
      /* border: 3px solid red; */
      display: flex;
      justify-content: flex-end;
+     background-color: hsl(0, 0%, 37%);
+     border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
 }
 
 .output-text {
      /* border: 3px solid green; */
+     font-size: 50px;
+     color: white;
+     margin-right: 25px;
 }
 
 .buttons-container {
      /* border: 3px solid blue; */
+     border-bottom-left-radius: 15px;
+     border-bottom-right-radius: 15px;
+     background-color: black;
 }
 
 .buttons {
@@ -47,13 +57,14 @@
      font-size: 0px;
 }
 
-/* .button-item {
-     height: 100px;
-     width: 100px;
-     border-radius: 100%;
+.top {
+     background-color: hsl(0,0%,65%);
 }
 
-.zero {
-     width: 200px;
-     border-radius: 25%;
-} */
+.number {
+     background-color:hsl(0,0%,20%);
+}
+
+.operator {
+     background-color: hsl(33,88%,57%);
+}
