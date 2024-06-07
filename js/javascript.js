@@ -33,3 +33,50 @@ zeroButton.style.borderRadius = 100 + "px";
 zeroButton.style.margin = buttonMargin;
 zeroButton.style.padding = buttonPadding;
 
+let numberButtons = buttonsDiv.querySelectorAll(".number");
+numberButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+          let buttonValue = button.getAttribute("data-value");
+          console.log(buttonValue);
+     });
+     button.addEventListener("mousedown", () => {
+          button.style.filter = `brightness(${150}%)`;
+     });
+     button.addEventListener("mouseup", () => {
+          button.style.filter = `brightness(${100}%)`;
+     })
+});
+
+//OPERATIONS
+
+function clear() {
+
+}
+
+function signChange() {
+
+}
+
+function back() {
+
+}
+
+function add() {
+
+}
+
+function subtract() {
+
+}
+
+function divide() {
+
+}
+
+function multiply() {
+
+}
+
+function equal() {
+     
+}
