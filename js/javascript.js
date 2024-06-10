@@ -34,6 +34,29 @@ zeroButton.style.margin = buttonMargin;
 zeroButton.style.padding = buttonPadding;
 
 
+let topButtons = buttonsDiv.querySelector(".top");
+
+let clearButton = buttonsDiv.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+     clear();
+});
+
+let signChangeButton = buttonsDiv.querySelector(".positive-negative");
+signChangeButton.addEventListener("click", () => {
+     if(secondNum) {
+          secondNum = signChange(secondNum);
+          outputText.textContent = secondNum;
+     }
+     else if(firstNum) {
+          firstNum = signChange(firstNum);
+          outputText.textContent = firstNum;
+     }
+     else{};
+     
+     
+});
+
+
 let outputContainer = calculator.querySelector(".output-container");
 let outputText = outputContainer.querySelector(".output-text")
 // outputText.textContent = "YOOOOOO";
@@ -63,6 +86,9 @@ numberButtons.forEach((button) => {
           let buttonValue = button.getAttribute("data-value");
           buttonValue = Number(buttonValue);
 
+
+          // if()
+
           //if operation doesn't have a value then firstNum is first click else click is secondNum
           if (!firstNum) {
                firstNum = buttonValue;               
@@ -72,8 +98,11 @@ numberButtons.forEach((button) => {
           else if(firstNum && operation) {
                secondNum = button.getAttribute("data-value");
                secondNum = Number(secondNum);
+               outputText.textContent = secondNum;
           }
           else {}
+
+          
           // firstNum = buttonValue;
 
           // //Check to see if there is a value for firstNum and operation
@@ -88,7 +117,7 @@ numberButtons.forEach((button) => {
      });
      button.addEventListener("mouseup", () => {
           button.style.filter = `brightness(${100}%)`;
-     })
+     });
 });
 
 
@@ -105,6 +134,10 @@ equalButton.addEventListener("click", () => {
      operationButtons.forEach((button) => {
           button.style.filter = `brightness(${100}%)`;
      });
+     if (firstNum && secondNum && operation) {
+          firstNum = equal(firstNum, secondNum, operation);
+          console.log("This is the new firstNum", firstNum)
+     }
 });
 
 
@@ -116,11 +149,14 @@ equalButton.addEventListener("click", () => {
 
 
 function clear() {
-
+     firstNum = null;
+     secondNum = null;
+     operation = null;
+     outputText.textContent = 0;
 }
 
-function signChange() {
-
+function signChange(num) {
+     return num * -1;
 }
 
 function back() {
@@ -131,24 +167,40 @@ function back() {
 // first a number is clicked and added to variable firstNum that holds 2st number
 //  Then the function operation is called on the click of that operation symbol. Inside the function it creates a variable maybe addTemp that on a click of another number, it gets assigned to that variable, then the two numbers get added and then the answer is given the value of firstNum and returned to the output text awaiting the next operation 
 function add(firstNum, secondNum) {
-     console.log("Addition Answer:",firstNum + secondNum);
-     return firstNum + secondNum;
+     // console.log("Addition Answer:",firstNum + secondNum);
+     return outputText.textContent = firstNum + secondNum;
 }
 
-function subtract() {
-
+function subtract(firstNum, secondNum) {
+     return outputText.textContent = firstNum - secondNum;
 }
 
-function divide() {
-
+function divide(firstNum, secondNum) {
+     return outputText.textContent = firstNum / secondNum;
 }
 
-function multiply() {
-
+function multiply(firstNum, secondNum) {
+     return outputText.textContent = firstNum * secondNum;
 }
 
 function equal(firstNum, secondNum, operation) {
      switch(operation) {
-          case "+": add(firstNum, secondNum);
+          case "+": 
+          return add(firstNum, secondNum);
+          break;
+
+          case "-": 
+          return subtract(firstNum, secondNum);
+          break;
+
+          case "/": 
+          return divide(firstNum, secondNum);
+          break;
+
+          case "*": 
+          return multiply(firstNum, secondNum);
      }
+
+     // return operation;
+
 }
