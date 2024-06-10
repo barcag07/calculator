@@ -65,6 +65,7 @@ i {
      background-color:hsl(0,0%,20%);
 }
 
-.operator {
+.operator,
+.equals {
      background-color: hsl(33,88%,57%);
 }

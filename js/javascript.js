@@ -13,7 +13,7 @@ let buttonMargin = 5;
 let buttonPadding = 0;
 let totalButtonHW = calcWidth / 4;
 let buttonHW = totalButtonHW - (buttonMargin * 2) - (buttonPadding * 2);
-console.log(buttonHW);
+// console.log(buttonHW);
 buttonItems.forEach((button) => {
      button.style.height = buttonHW + "px";
      button.style.width = buttonHW + "px";
@@ -33,11 +33,16 @@ zeroButton.style.borderRadius = 100 + "px";
 zeroButton.style.margin = buttonMargin;
 zeroButton.style.padding = buttonPadding;
 
+let firstNum;
+
+
 let numberButtons = buttonsDiv.querySelectorAll(".number");
 numberButtons.forEach((button) => {
      button.addEventListener("click", () => {
           let buttonValue = button.getAttribute("data-value");
-          console.log(buttonValue);
+          //if operation doesn't have a value then firstNum is first click else click is secondNum
+          firstNum = buttonValue;
+          console.log(firstNum);
      });
      button.addEventListener("mousedown", () => {
           button.style.filter = `brightness(${150}%)`;
@@ -46,6 +51,18 @@ numberButtons.forEach((button) => {
           button.style.filter = `brightness(${100}%)`;
      })
 });
+
+let operation;
+
+let operationButtons = buttonsDiv.querySelectorAll(".operator");
+operationButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+          operation = button.getAttribute("data-value");
+          console.log(operation);
+     })
+});
+
+//Add event listener for decimal that when it is pressed, it gets appended to the the output text
 
 //OPERATIONS
 
@@ -60,7 +77,10 @@ function signChange() {
 function back() {
 
 }
-
+//Create a variable for firstNum, secondNum, and operation
+// takes 2 parameter, firstNum secondNum(maybe an event)
+// first a number is clicked and added to variable firstNum that holds 2st number
+//  Then the function operation is called on the click of that operation symbol. Inside the function it creates a variable maybe addTemp that on a click of another number, it gets assigned to that variable, then the two numbers get added and then the answer is given the value of firstNum and returned to the oputput text awaiting the next operation 
 function add() {
 
 }
