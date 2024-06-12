@@ -64,6 +64,11 @@ numberButtons.forEach((button) => {
                buttonValue = Number(buttonValue);
                // console.log(typeof buttonValue);
                tempNum = appendToDisplay(buttonValue);
+
+               if (firstNum && operator) {
+                    // tempNum = appendToDisplay(buttonValue);
+                    secondNum = Number(outputText.value);
+               }
                // tempNum = buttonValue;
                // let showNum = outputText.value;
 
@@ -73,20 +78,24 @@ numberButtons.forEach((button) => {
 });
 
 
-let firstNum = "";
-let secondNum = "";
-let operator = null;
+let firstNum;
+let secondNum;
+let operator;
 
 let operationButton = buttonsDiv.querySelectorAll(".operator");
 operationButton.forEach((button) => {
      button.addEventListener("click", () => {
-          operation = button.getAttribute("data-value");
+          operator = button.getAttribute("data-value");
+          if (!firstNum) {
+               firstNum = Number(outputText.value);
+               outputText.value = "";
+          }
+          
           // firstNum = Number(outputText.textContent);
-          let showNum = outputText.value;
+          
 
                // console.log(showNum);
-          console.log(showNum);
-          console.log(operation);
+          // console.table()
      });
 });
 
@@ -115,8 +124,8 @@ function appendToDisplay(input) {
      outputText.value += input;
 }
 
-function add() {
-
+function add(firstNum, secondNum) {
+     return firstNum + secondNum;
 }
 
 function subtract() {
@@ -133,8 +142,12 @@ function divide() {
 
 function operate() {
      //switch statement
-     switch(operatorSymbol) {
-          case "+": return add();
+     let result;
+     switch(operator) {
+          case "+": 
+          result = add(firstNum, secondNum);
+          outputText.value = result;
+          break;
      }
 }
 
