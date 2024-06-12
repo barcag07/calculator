@@ -34,6 +34,85 @@ zeroButton.style.margin = buttonMargin;
 zeroButton.style.padding = buttonPadding;
 
 
+let firstNum, secondNum, operation;
+
+let operationButton = buttonsDiv.querySelectorAll(".operator");
+operationButton.forEach((button) => {
+     button.addEventListener("click", () => {
+          operation = button.getAttribute("data-value");
+          console.log(operation);
+     });
+});
+
+
+let calcButtons = buttonsDiv.querySelectorAll("button");
+calcButtons.forEach((button) => {
+     button.addEventListener("mousedown", () => {
+          button.style.filter = `brightness(${150}%)`;
+     });
+
+     button.addEventListener("mouseup", () => {
+          button.style.filter = `brightness(${100}%)`;
+     })
+
+});
+
+let numberButtons = buttonsDiv.querySelectorAll(".number");
+numberButtons.forEach((button) => {
+     button.addEventListener("click", () => {
+          buttonValue = button.getAttribute("data-value");
+
+          if (buttonValue === ".") {
+               appendDecimal();
+          }
+          else {
+               buttonValue = Number(buttonValue);
+               // console.log(typeof buttonValue);
+               appendToDisplay(buttonValue);
+          }  
+     });
+});
+
+// const display = document.querySelector("#display");
+// display.style.color = "blue";
+
+
+let outputTextContainer = calculator.querySelector(".output-container");
+let outputText = outputTextContainer.querySelector(".output-text");
+// outputText.style.color = "red";
+
+function appendDecimal() {
+     outputText.value += ".";
+}
+
+
+function appendToDisplay(input) {
+     outputText.value += input;
+}
+
+function add() {
+
+}
+
+function subtract() {
+
+}
+
+function multiply() {
+
+}
+
+function divide() {
+
+}
+
+function operate() {
+     //switch statement
+     switch(operatorSymbol) {
+          case "+": return add();
+     }
+}
+
 // let topButtons = buttonsDiv.querySelector(".top");
 
 // let clearButton = buttonsDiv.querySelector(".clear");
