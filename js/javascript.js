@@ -34,15 +34,6 @@ zeroButton.style.margin = buttonMargin;
 zeroButton.style.padding = buttonPadding;
 
 
-let firstNum, secondNum, operation;
-
-let operationButton = buttonsDiv.querySelectorAll(".operator");
-operationButton.forEach((button) => {
-     button.addEventListener("click", () => {
-          operation = button.getAttribute("data-value");
-          console.log(operation);
-     });
-});
 
 
 let calcButtons = buttonsDiv.querySelectorAll("button");
@@ -57,21 +48,55 @@ calcButtons.forEach((button) => {
 
 });
 
+let tempNum;
+
 let numberButtons = buttonsDiv.querySelectorAll(".number");
 numberButtons.forEach((button) => {
      button.addEventListener("click", () => {
           buttonValue = button.getAttribute("data-value");
 
-          if (buttonValue === ".") {
-               appendDecimal();
+          if (buttonValue === ".") {;
+               if (!getCurrentNum().includes(".")) {
+                    appendDecimal();
+               }
           }
           else {
                buttonValue = Number(buttonValue);
                // console.log(typeof buttonValue);
-               appendToDisplay(buttonValue);
+               tempNum = appendToDisplay(buttonValue);
+               // tempNum = buttonValue;
+               // let showNum = outputText.value;
+
+               // console.log(showNum);
           }  
      });
 });
+
+
+let firstNum = "";
+let secondNum = "";
+let operator = null;
+
+let operationButton = buttonsDiv.querySelectorAll(".operator");
+operationButton.forEach((button) => {
+     button.addEventListener("click", () => {
+          operation = button.getAttribute("data-value");
+          // firstNum = Number(outputText.textContent);
+          let showNum = outputText.value;
+
+               // console.log(showNum);
+          console.log(showNum);
+          console.log(operation);
+     });
+});
+
+
+function getCurrentNum() {
+     let currentNum = outputText.value;
+     return currentNum
+}
+
+// let opera
 
 // const display = document.querySelector("#display");
 // display.style.color = "blue";
