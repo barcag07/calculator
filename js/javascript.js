@@ -90,6 +90,9 @@ operationButton.forEach((button) => {
                firstNum = Number(outputText.value);
                outputText.value = "";
           }
+          else {
+               outputText.value = "";
+          }
           
           // firstNum = Number(outputText.textContent);
           
@@ -118,7 +121,10 @@ let outputText = outputTextContainer.querySelector(".output-text");
 
 let equalButton = buttonsDiv.querySelector(".equals");
 equalButton.addEventListener("click", () => {
-     operate(firstNum, secondNum, operator);
+     outputText.value = operate(firstNum, secondNum, operator);
+     result = Number(outputText.value);
+     firstNum = result;
+
 })
 
 
@@ -150,24 +156,20 @@ function operate(firstNum, secondNum, operator) {
      let result;
      switch(operator) {
           case "+": 
-               result = add(firstNum, secondNum);
-               outputText.value = result;
-               result = firstNum;
+               return add(firstNum, secondNum);
+               
                break;
 
           case "-":
-               result = subtract(firstNum, secondNum);
-               outputText.value = result;
+               return subtract(firstNum, secondNum);
                break;
 
           case "*":
-               result = multiply(firstNum, secondNum);
-               outputText.value = result;
+               return multiply(firstNum, secondNum);
                break;
 
           case "/":
-               result = divide(firstNum, secondNum);
-               outputText.value = result;
+               return divide(firstNum, secondNum);
                break;
      }
 }
