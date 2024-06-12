@@ -115,6 +115,13 @@ let outputTextContainer = calculator.querySelector(".output-container");
 let outputText = outputTextContainer.querySelector(".output-text");
 // outputText.style.color = "red";
 
+
+let equalButton = buttonsDiv.querySelector(".equals");
+equalButton.addEventListener("click", () => {
+     operate(firstNum, secondNum, operator);
+})
+
+
 function appendDecimal() {
      outputText.value += ".";
 }
@@ -127,27 +134,41 @@ function appendToDisplay(input) {
 function add(firstNum, secondNum) {
      return firstNum + secondNum;
 }
-
-function subtract() {
-
+function subtract(firstNum, secondNum) {
+     return firstNum - secondNum;
+}
+function multiply(firstNum, secondNum) {
+     return firstNum * secondNum;
+}
+function divide(firstNum, secondNum) {
+     return firstNum / secondNum;
 }
 
-function multiply() {
 
-}
-
-function divide() {
-
-}
-
-function operate() {
+function operate(firstNum, secondNum, operator) {
      //switch statement
      let result;
      switch(operator) {
           case "+": 
-          result = add(firstNum, secondNum);
-          outputText.value = result;
-          break;
+               result = add(firstNum, secondNum);
+               outputText.value = result;
+               result = firstNum;
+               break;
+
+          case "-":
+               result = subtract(firstNum, secondNum);
+               outputText.value = result;
+               break;
+
+          case "*":
+               result = multiply(firstNum, secondNum);
+               outputText.value = result;
+               break;
+
+          case "/":
+               result = divide(firstNum, secondNum);
+               outputText.value = result;
+               break;
      }
 }
 
