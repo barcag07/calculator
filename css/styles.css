@@ -40,7 +40,9 @@ i {
 .output-text {
      /* border: 3px solid green; */
      text-align: end;
+     padding: 5px 50px 5px 5px;
      width: 500px;
+     caret-color: transparent;
      border: none;
      font-size: 50px;
      color: white;
@@ -50,7 +52,8 @@ i {
      background-color: hsl(0, 0%, 37%);
      border-top-left-radius: 15px;
      border-top-right-radius: 15px;
-
+     outline-color: transparent;
+     outline-style: none;
 }
 
 .buttons-container {
