@@ -135,6 +135,8 @@ function appendToDisplay(input) {
      outputText.value += input;
 }
 
+let decimalAnswer;
+
 function add(firstNum, secondNum) {
      return firstNum + secondNum;
 }
@@ -142,14 +144,16 @@ function subtract(firstNum, secondNum) {
      return firstNum - secondNum;
 }
 function multiply(firstNum, secondNum) {
-     return firstNum * secondNum;
+     decimalAnswer = firstNum * secondNum;
+     return Math.round(decimalAnswer * 100) / 100;
 }
 function divide(firstNum, secondNum) {
      if (firstNum === 0 || secondNum === 0) {
           return 0
      }
      else {
-          return firstNum / secondNum
+          decimalAnswer = firstNum / secondNum;
+          return Math.round(decimalAnswer * 100) / 100;
      }
 }
 
