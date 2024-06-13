@@ -125,6 +125,17 @@ equalButton.addEventListener("click", () => {
      secondNum = undefined;
 })
 
+let clearButton = buttonsDiv.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+     // clearButton.style.backgroundColor = "red";
+     firstNum = "";
+     secondNum = "";
+     operator = null;
+     outputText.value = "";
+});
+
+
+
 
 function appendDecimal() {
      outputText.value += ".";
