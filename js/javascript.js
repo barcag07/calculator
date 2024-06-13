@@ -93,14 +93,16 @@ let resultDisplayed = false;
 let operationButton = buttonsDiv.querySelectorAll(".operator");
 operationButton.forEach((button) => {
     button.addEventListener("click", () => {
+        if (resultDisplayed) {
+            resultDisplayed = false;
+            secondNum = undefined;
+        }
         operator = button.getAttribute("data-value");
         operationButtonTF = true;
         if (!firstNum) {
             firstNum = Number(outputText.value);
-            outputText.value = "";
-        } else {
-            outputText.value = "";
         }
+        outputText.value = "";
     });
 });
 
@@ -114,12 +116,15 @@ let outputText = outputTextContainer.querySelector(".output-text");
 
 let equalButton = buttonsDiv.querySelector(".equals");
 equalButton.addEventListener("click", () => {
-    outputText.value = operate(firstNum, secondNum, operator);
-    result = Number(outputText.value);
-    firstNum = result;
-    operationButtonTF = false;
-    secondNum = undefined;
-    resultDisplayed = true;  // Set the flag indicating the result is displayed
+    if (firstNum !== undefined && secondNum !== undefined && operator) {
+        outputText.value = operate(firstNum, secondNum, operator);
+        result = Number(outputText.value);
+        firstNum = result;
+        operationButtonTF = false;
+        secondNum = undefined;
+        operator = null;
+        resultDisplayed = true;  // Set the flag indicating the result is displayed
+    }
 });
 
 let clearButton = buttonsDiv.querySelector(".clear");
@@ -133,7 +138,14 @@ clearButton.addEventListener("click", () => {
 
 let signChangeButton = buttonsDiv.querySelector(".positive-negative");
 signChangeButton.addEventListener("click", () => {
-    // signChangeButton.style.backgroundColor = "blue";
+    if (secondNum !== undefined) {
+        secondNum *= -1;
+        outputText.value = secondNum;
+    } else if (firstNum !== undefined) {
+        firstNum *= -1;
+        outputText.value = firstNum;
+    }
+    console.log(`firstNum: ${firstNum}, operator: ${operator}, secondNum: ${secondNum}`);
 });
 
 function appendDecimal() {
