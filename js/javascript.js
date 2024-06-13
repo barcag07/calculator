@@ -145,7 +145,12 @@ function multiply(firstNum, secondNum) {
      return firstNum * secondNum;
 }
 function divide(firstNum, secondNum) {
-     return firstNum / secondNum;
+     if (firstNum === 0 || secondNum === 0) {
+          return 0
+     }
+     else {
+          return firstNum / secondNum
+     }
 }
 
 
