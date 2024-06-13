@@ -25,8 +25,6 @@ buttonItems.forEach((button) => {
 
 
 let zeroButton = buttonsDiv.querySelector(".zero");
-// let zeroButtonCSS = getComputedStyle(zeroButton);
-// let zeroButtonWidth = parseFloat(zeroButtonCSS.width);
 let zeroButtonWidth = buttonHW * 2 + buttonMargin * 2 + buttonPadding * 2;
 zeroButton.style.width = (zeroButtonWidth) + "px";
 zeroButton.style.borderRadius = 100 + "px";
@@ -55,6 +53,12 @@ numberButtons.forEach((button) => {
      button.addEventListener("click", () => {
           buttonValue = button.getAttribute("data-value");
 
+          if (firstNum && !operationButtonTF){
+               outputText.value = "";
+               firstNum = outputText.value;
+
+          }
+
           if (buttonValue === ".") {;
                if (!getCurrentNum().includes(".")) {
                     appendDecimal();
@@ -66,14 +70,12 @@ numberButtons.forEach((button) => {
                tempNum = appendToDisplay(buttonValue);
 
                if (firstNum && operator) {
-                    // tempNum = appendToDisplay(buttonValue);
+
                     secondNum = Number(outputText.value);
                }
-               // tempNum = buttonValue;
-               // let showNum = outputText.value;
-
                // console.log(showNum);
           }  
+          
      });
 });
 
@@ -81,11 +83,13 @@ numberButtons.forEach((button) => {
 let firstNum;
 let secondNum;
 let operator;
+let operationButtonTF = false;
 
 let operationButton = buttonsDiv.querySelectorAll(".operator");
 operationButton.forEach((button) => {
      button.addEventListener("click", () => {
           operator = button.getAttribute("data-value");
+          operationButtonTF = true;
           if (!firstNum) {
                firstNum = Number(outputText.value);
                outputText.value = "";
@@ -94,11 +98,8 @@ operationButton.forEach((button) => {
                outputText.value = "";
           }
           
-          // firstNum = Number(outputText.textContent);
-          
 
                // console.log(showNum);
-          // console.table()
      });
 });
 
@@ -108,10 +109,6 @@ function getCurrentNum() {
      return currentNum
 }
 
-// let opera
-
-// const display = document.querySelector("#display");
-// display.style.color = "blue";
 
 
 let outputTextContainer = calculator.querySelector(".output-container");
@@ -124,7 +121,8 @@ equalButton.addEventListener("click", () => {
      outputText.value = operate(firstNum, secondNum, operator);
      result = Number(outputText.value);
      firstNum = result;
-
+     operationButtonTF = false;
+     secondNum = undefined;
 })
 
 
@@ -153,223 +151,17 @@ function divide(firstNum, secondNum) {
 
 function operate(firstNum, secondNum, operator) {
      //switch statement
-     let result;
+
      switch(operator) {
           case "+": 
                return add(firstNum, secondNum);
-               
-               break;
-
           case "-":
                return subtract(firstNum, secondNum);
-               break;
 
           case "*":
                return multiply(firstNum, secondNum);
-               break;
 
           case "/":
                return divide(firstNum, secondNum);
-               break;
      }
 }
-
-// let topButtons = buttonsDiv.querySelector(".top");
-
-// let clearButton = buttonsDiv.querySelector(".clear");
-// clearButton.addEventListener("click", () => {
-//      clear();
-// });
-
-// let signChangeButton = buttonsDiv.querySelector(".positive-negative");
-// signChangeButton.addEventListener("click", () => {
-//      if (outputText.textContent !== "0") {
-//           if (operation && secondNum !== null) {
-//                secondNum = signChange(secondNum);
-//                outputText.textContent = secondNum;
-//           } else if (firstNum !== null) {
-//                firstNum = signChange(firstNum);
-//                outputText.textContent = firstNum;
-//           }
-//      }
-// });
-
-
-// let outputContainer = calculator.querySelector(".output-container");
-// let outputText = outputContainer.querySelector(".output-text")
-// // outputText.textContent = "YOOOOOO";
-
-
-// let operation;
-
-// let operationButtons = buttonsDiv.querySelectorAll(".operator");
-// operationButtons.forEach((button) => {
-//      button.addEventListener("click", () => {
-//           button.style.filter = `brightness(${125}%)`
-//           operation = button.getAttribute("data-value");
-//           console.log(operation);
-//      });
-// });
-
-// let decimalButton = buttonsDiv.querySelector(".decimal-point");
-// let decimalClicked = false;
-
-// decimalButton.addEventListener("click", () => {
-//      decimalClicked = true;
-// });
-
-
-
-
-// let firstNum;
-// let secondNum
-
-
-// let numberButtons = buttonsDiv.querySelectorAll(".number");
-// numberButtons.forEach((button) => {
-//      button.addEventListener("click", () => {
-//           //When using .getAttribute it changes value to a string so don't forget to change the value to a number using Number(variable)
-//           let buttonValue = button.getAttribute("data-value");
-//           appendToDisplay(buttonValue);
-
-//           // if (decimalClicked) {
-//           //      if (!firstNum) {
-//           //           firstNum += buttonValue;
-//           //           firstNum = buttonValue;
-
-//           //           outputText.textContent = firstNum;
-     
-//           //      }
-//           //      else if(firstNum && operation) {
-//           //           secondNum = button.getAttribute("data-value");
-//           //           secondNum = Number(secondNum);
-//           //           outputText.textContent = secondNum;
-//           //      }
-//           //      else {}
-//           // }
-//           buttonValue = Number(buttonValue);
-
-
-//           // if()
-
-//           //if operation doesn't have a value then firstNum is first click else click is secondNum
-
-//           // if (!firstNum) {
-//           //      firstNum = buttonValue;               
-//           //      outputText.textContent = firstNum;
-
-//           // }
-//           // else if(firstNum && operation) {
-//           //      secondNum = button.getAttribute("data-value");
-//           //      secondNum = Number(secondNum);
-//           //      outputText.textContent = secondNum;
-//           // }
-//           // else {}
-
-          
-//           // firstNum = buttonValue;
-
-//           // //Check to see if there is a value for firstNum and operation
-//           // if (operation && firstNum) {
-               
-//           // }
-
-//           console.log(`operation: ${operation} \nfirstNum: ${firstNum}\nsecondNum: ${secondNum}`);
-//      });
-//      button.addEventListener("mousedown", () => {
-//           button.style.filter = `brightness(${150}%)`;
-//      });
-//      button.addEventListener("mouseup", () => {
-//           button.style.filter = `brightness(${100}%)`;
-//      });
-// });
-
-
-
-// let result;
-
-// let equalButton = buttonsDiv.querySelector(".equals");
-// equalButton.addEventListener("click", () => {
-//      if (firstNum && secondNum && operation) {
-//           firstNum = equal(firstNum, secondNum, operation);
-//           console.log("This is the new firstNum", firstNum);
-//           outputText.textContent = firstNum; // Update the output with the new firstNum
-//           // Reset secondNum and operation for the next calculation
-//           secondNum = null;
-//           operation = null;
-//      }
-//      operationButtons.forEach((button) => {
-//           button.style.filter = `brightness(${100}%)`;
-//      });
-// });
-
-
-// function appendToDisplay(buttonValue) {
-//      outputText.textContent += buttonValue;
-// }
-
-
-
-// //Add event listener for decimal that when it is pressed, it gets appended to the the output text
-
-
-// //OPERATIONS
-
-
-
-// function clear() {
-//      firstNum = null;
-//      secondNum = null;
-//      operation = null;
-//      outputText.textContent = 0;
-// }
-
-// function signChange(num) {
-//      return num * -1;
-// }
-
-// function back() {
-
-// }
-// //Create a variable for firstNum, secondNum, and operation
-// // takes 2 parameter, firstNum secondNum(maybe an event)
-// // first a number is clicked and added to variable firstNum that holds 2st number
-// //  Then the function operation is called on the click of that operation symbol. Inside the function it creates a variable maybe addTemp that on a click of another number, it gets assigned to that variable, then the two numbers get added and then the answer is given the value of firstNum and returned to the output text awaiting the next operation 
-// function add(firstNum, secondNum) {
-//      // console.log("Addition Answer:",firstNum + secondNum);
-//      return outputText.textContent = firstNum + secondNum;
-// }
-
-// function subtract(firstNum, secondNum) {
-//      return outputText.textContent = firstNum - secondNum;
-// }
-
-// function divide(firstNum, secondNum) {
-//      return outputText.textContent = firstNum / secondNum;
-// }
-
-// function multiply(firstNum, secondNum) {
-//      return outputText.textContent = firstNum * secondNum;
-// }
-
-// function equal(firstNum, secondNum, operation) {
-//      switch(operation) {
-//           case "+": 
-//           return add(firstNum, secondNum);
-//           break;
-
-//           case "-": 
-//           return subtract(firstNum, secondNum);
-//           break;
-
-//           case "/": 
-//           return divide(firstNum, secondNum);
-//           break;
-
-//           case "*": 
-//           return multiply(firstNum, secondNum);
-//      }
-
-//      // return operation;
-
-// }
